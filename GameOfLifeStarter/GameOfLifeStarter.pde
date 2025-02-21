@@ -1,4 +1,4 @@
-final int SPACING = 20; // each cell's width/height //<>// //<>//
+final int SPACING = 20; // each cell's width/height //<>// //<>// //<>//
 final float DENSITY = 0.1; // how likely each cell is to be alive at the start
 int[][] grid; // the 2D array to hold 0's and 1's
 
@@ -39,4 +39,15 @@ void showGrid() {
   // your code here
   // use square() to represent each cell
   // use fill(r, g, b) to control color: black for empty, red for filled (or alive)
+  for(int i = 0; i < grid.length; i++) {
+    for(int j = 0; j < grid[i].length; j++) {
+      if(grid[i][j] == 1) {
+        fill(255, 0, 0);
+      }
+      else {
+        fill(0);
+      }
+      square(j * SPACING, i * SPACING, SPACING);
+    }
+  }
 }
