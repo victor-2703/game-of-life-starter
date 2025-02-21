@@ -10,7 +10,16 @@ void setup() {
 
   // populate initial grid
   // your code here
-
+  for(int i = 0; i < grid.length; i++) {
+    for(int j = 0; j < grid[i].length; j++) {
+      if(random(1) < DENSITY) {
+        grid[i][j] = 1;
+      }
+      else {
+        grid[i][j] = 0;
+      }
+    }
+  }
 }
 
 void draw() {
