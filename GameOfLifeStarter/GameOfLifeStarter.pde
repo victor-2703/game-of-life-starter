@@ -5,12 +5,12 @@ int[][] grid; // the 2D array to hold 0's and 1's
 void setup() {
   size(800, 600); // adjust accordingly, make sure it's a multiple of SPACING
   noStroke(); // don't draw the edges of each cell
-  frameRate(10); // controls speed of regeneration
+  frameRate(1); // controls speed of regeneration
   grid = new int[height / SPACING][width / SPACING];
 
   // populate initial grid
   // your code here
-  for(int i = 0; i < grid.length; i++) {
+  /*for(int i = 0; i < grid.length; i++) {
     for(int j = 0; j < grid[i].length; j++) {
       if(random(1) < DENSITY) {
         grid[i][j] = 1;
@@ -19,7 +19,12 @@ void setup() {
         grid[i][j] = 0;
       }
     }
-  }
+  }*/
+  grid[20][20] = 1;
+  grid[19][20] = 1;
+  grid[19][19] = 1;
+  grid[20][19] = 1;
+  grid[21][20] = 1;
 }
 
 void draw() {
@@ -31,7 +36,8 @@ int[][] calcNextGrid() {
   int[][] nextGrid = new int[grid.length][grid[0].length];
 
   // your code here
-
+  int neighbors = countNeighbors(20, 20);
+  
   return nextGrid;
 }
 
@@ -40,7 +46,14 @@ int countNeighbors(int y, int x) {
   
   // your code here
   // don't check out-of-bounds cells
-
+  for(int i = y - 1; i <= y + 1; i++) {
+    for(int j = x - 1; j <= x + 1; j++) {
+      if(!(i == y && j == x)) {
+        n += grid[i][j];
+      }
+    }
+  }
+  System.out.println(n);
   return n;
 }
 
