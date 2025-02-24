@@ -32,7 +32,7 @@ int[][] calcNextGrid() {
 
   // your code here
   for (int i = 0; i < grid.length; i++) {
-    for (int j = 0; j < grid[y].length; j++) {
+    for (int j = 0; j < grid[i].length; j++) {
       int neighbors = countNeighbors(i, j);
       if (grid[i][j] == 1) {
         if (neighbors < 2 || neighbors > 3) {
