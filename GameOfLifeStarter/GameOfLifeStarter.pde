@@ -10,7 +10,7 @@ void setup() {
 
   // populate initial grid
   // your code here
-  /*for(int i = 0; i < grid.length; i++) {
+  for(int i = 0; i < grid.length; i++) {
     for(int j = 0; j < grid[i].length; j++) {
       if(random(1) < DENSITY) {
         grid[i][j] = 1;
@@ -19,12 +19,7 @@ void setup() {
         grid[i][j] = 0;
       }
     }
-  }*/
-  grid[20][20] = 1;
-  grid[19][20] = 1;
-  grid[19][19] = 1;
-  grid[20][19] = 1;
-  grid[21][20] = 1;
+  }
 }
 
 void draw() {
@@ -36,8 +31,27 @@ int[][] calcNextGrid() {
   int[][] nextGrid = new int[grid.length][grid[0].length];
 
   // your code here
-  int neighbors = countNeighbors(20, 20);
-  
+  for (int i = 0; i < grid.length; i++) {
+    for (int j = 0; j < grid[y].length; j++) {
+      int neighbors = countNeighbors(i, j);
+      if (grid[i][j] == 1) {
+        if (neighbors < 2 || neighbors > 3) {
+          nextGrid[i][j] = 0;
+        }
+        else {
+          nextGrid[i][j] = 1;
+        }
+      }
+      else {
+        if (neighbors == 3) {
+          nextGrid[i][j] = 1;
+        }
+        else {
+          nextGrid[i][j] = 0;
+        }
+      }
+    }
+  }
   return nextGrid;
 }
 
