@@ -74,8 +74,10 @@ int countNeighbors(int y, int x) {
   // don't check out-of-bounds cells
   for(int i = y - 1; i <= y + 1; i++) {
     for(int j = x - 1; j <= x + 1; j++) {
-      if(!(i == y && j == x)) {
-        n += grid[i][j];
+      if(i >= 0 && i < grid.length && j >= 0 && i < grid[0].length && !(j == y && j == x)) {
+        if (grid[i][j] > 0) {
+          n++;
+        }
       }
     }
   }
