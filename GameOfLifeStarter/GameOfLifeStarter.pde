@@ -2,6 +2,7 @@ final int SPACING = 20; // each cell's width/height //<>// //<>// //<>//
 final float DENSITY = 0.1; // how likely each cell is to be alive at the start
 int[][] grid; // the 2D array to hold 0's and 1's
 boolean paused = false;
+final int OLD_AGE = 3;
 
 void setup() {
   size(800, 600); // adjust accordingly, make sure it's a multiple of SPACING
@@ -51,7 +52,7 @@ int[][] calcNextGrid() {
           nextGrid[i][j] = 0;
         }
         else {
-          nextGrid[i][j] = 1;
+          nextGrid[i][j] = currentAge + 1;
         }
       }
       else {
@@ -74,14 +75,15 @@ int countNeighbors(int y, int x) {
   // don't check out-of-bounds cells
   for(int i = y - 1; i <= y + 1; i++) {
     for(int j = x - 1; j <= x + 1; j++) {
-      if(i >= 0 && i < grid.length && j >= 0 && i < grid[0].length && !(j == y && j == x)) {
-        if (grid[i][j] > 0) {
-          n++;
+      if(i >= 0 && i < grid.length && j >= 0 && j < grid[0].length) {
+        if (!(i == y && j == x)) {
+          if (grid[i][j] > 0) {
+            n++;
+          }
         }
       }
     }
   }
-  System.out.println(n);
   return n;
 }
 
@@ -92,11 +94,12 @@ void showGrid() {
   for(int i = 0; i < grid.length; i++) {
     for(int j = 0; j < grid[i].length; j++) {
       int age = grid[i][j];
-      if (age > 0) {
-        int red = min(age * 20, 255);
-        fill(red, 0, 0);
-      } else {
+      if (age == 0) {
         fill(0);
+      } else if (age < OLD_AGE) {
+        fill(255, 0, 0);
+      } else {
+        fill(0, 0, 255);
       }
       square(j * SPACING, i * SPACING, SPACING);
     }
