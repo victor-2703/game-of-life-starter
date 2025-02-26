@@ -91,10 +91,11 @@ void showGrid() {
   // use fill(r, g, b) to control color: black for empty, red for filled (or alive)
   for(int i = 0; i < grid.length; i++) {
     for(int j = 0; j < grid[i].length; j++) {
-      if(grid[i][j] == 1) {
-        fill(255, 0, 0);
-      }
-      else {
+      int age = grid[i][j];
+      if (age > 0) {
+        int red = min(age * 20, 255);
+        fill(red, 0, 0);
+      } else {
         fill(0);
       }
       square(j * SPACING, i * SPACING, SPACING);
